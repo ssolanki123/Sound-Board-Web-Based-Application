@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Soundboard</title>
+
+</head>
+<body>
+    <form action = "soundboard_part3.html" method="GET">
+        <select id = "theme_selector" onchange= "clickme(this)">
+            <option value = "dim">dim</option>
+            <option value = "night">night</option>
+        </select>
+    </form>
+
+    <div id = "t1">
+            <img id="img1" src="../img/Image1.jpg">
+            <audio controls>
+                <source id="audio1" src = "../sound/Episode13.mp3" type ="audio/mpeg">
+            </audio>
+    </div>
+
+</body>
+</html>
+
+<script type = "text/javascript">
+    var theme;
+    function clickme(st) {
+        theme = st.options[st.selectedIndex];
+        if(theme.value == "dim") {
+            document.body.style.backgroundColor = "grey";
+        }
+
+        else {
+            document.body.style.backgroundColor = "black";
+        }
+    }
+
+    document.getElementById("img1").src = "../img/backgroundimage.jpg"
+    document.getElementById("audio1").src = "../sound/alright_lover_-_04_-_Snow_Wave (1).mp3"
+
+
+
+
+</script>

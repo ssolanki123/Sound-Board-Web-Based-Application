@@ -1,0 +1,16 @@
+{  
+  "short_name": "cube",  
+  "name": "cube-load",  
+  "start_url": "./start.html",  
+  "icons": [  
+    {  
+      "src": "../img/loading.gif",  
+      "sizes": "600x600",  
+      "type": "image/gif"  
+    }
+  ],
+  "background_color": "#FAFAFA",
+  "theme_color": "#512DA8", 
+  "display": "standalone",  
+  "orientation": "portrait"  
+}

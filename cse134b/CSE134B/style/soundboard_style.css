@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+@media (min-width: 1024px) {
+	body {
+		background: url('../img/firewatchbackground.jpg');
+		background-repeat: no-repeat;
+	}
+
+	header {
+		padding-bottom: 20px;
+		margin-right: 200px;
+		margin-left: 200px;
+	}
+
+	header > h1 {
+		display: inline;
+		color: white;
+	}
+
+	#formsep {
+		display: inline-block;
+	}
+
+	form {
+		display: inline;
+		float: right;
+	}
+
+	#loginform {
+		color: white;
+	}
+
+	audio {
+		width: 200px;
+	}
+
+	img {
+		border: 50px;
+		border-radius: 300px;
+	}
+
+	.rows {
+		display: flex;
+		justify-content: center;
+	}
+
+	.box-row-1 {
+	  display: inline-block;
+	  margin: 50px;
+	  width: 200px;
+	  height: 200px;
+	}
+
+	.box-row-2 {
+	  display: inline-block;
+	  margin: 50px;
+	  width: 200px;
+	  height: 200px;
+	}
+
+	.box-row-3 {
+	  display: inline-block;
+	  margin: 50px;
+	  width: 200px;
+	  height: 200px;
+	}
+}
+
+@media(max-width: 1024px) {
+	body {
+		background: url('../img/car2.jpg');
+		background-repeat: no-repeat;
+	}
+
+	header {
+		padding-bottom: 75px;
+		margin-right: 20%;
+		margin-left: 10%;
+		font-family: sans-serif;
+	}
+
+	header > h1 {
+		display: inline-block;
+		color: white;
+	}
+
+	form {
+		display: inline-block;
+		float: right;
+		color: white;
+	}
+
+	audio {
+		width: 200px;
+	}
+
+	img {
+		width: 128px;
+		height: 128px;
+		border: 25px;
+		border-radius: 150px;
+	}
+
+	.rows {
+		display: flex;
+		flex-flow: column wrap;
+		height: 400px;
+	}
+
+	.box-smol1 {
+		display: flex;
+		width: 200px;
+		height: 64px;
+		margin: 64px;
+		margin-left: 10%;
+		align-content: flex-start;
+	}
+
+	.box-smol2 {
+		display: flex;
+		width: 200px;
+		height: 64px;
+		margin: 64px;
+		margin-left: 10%;
+		align-content: flex-end;
+	}
+}
+
+footer {
+	margin: 50px;
+	text-align: center;
+	color: white;
+}

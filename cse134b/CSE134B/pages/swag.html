@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Soundboard</title>
+	<!-- BEGIN TRACKJS -->
+	<script type="text/javascript">window._trackJs = { token: 'a3b62a3232d44826a2d8751981d9e1b0' };</script>
+	<script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- END TRACKJS -->
+	<style>
+		header > h1 {
+			text-align: center;
+		}
+
+		#container {
+			display: inline-flex;
+			justify-content: center;
+			flex-flow: row wrap;
+		}
+
+		#block {
+			margin: 20px;
+			width: 256px;
+			height: 256px;
+			border-style: solid;
+			border-color: white;
+			border-radius: 300px
+		}
+
+		img {
+			width: 64px;
+			height: 64px;
+			margin: 96px;
+		}
+
+		audio {
+			display: none;
+		}
+
+		form#ldmode {
+			float: right;
+		}
+
+		form#crform {
+			float: left;
+		}
+
+		form#plylist{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<h1> Audio Techboard </h1>
+</header>
+
+<form id="ldmode" action="newhtml.html" method="GET">
+	<select id="theme">
+		<option class="light" value="light"> Daymode</option>
+		<option class="dark" value="dark"> Nightmode</option>
+		<input id="but1" type="button" value="submit">
+	</select>
+</form>
+
+<form id="crform" action = "newhtml.html" method = "GET">
+	<input class="radiobut" type="radio" name="content" value="compact"> Compact <br>
+	<input class="radiobut" type="radio" name="content" value="rich" checked> Rich <br>
+</form>
+
+<form id="plylist" action="newhtml.html" method="GET">
+	<select id="playlist">
+		<option value="playlist1">Playlist 1</option>
+		<option value="playlist2">Playlist 2</option>
+		<input id="but2" type="button" value="submit">
+	</select>
+</form>
+
+<template id="sound_and_img_c">
+	<div id="ssic" style="margin: 50px;">
+		<p id="songtitle-artist" style="vertical-align: middle; display: inline"></p>
+		<audio src="" controls style="display: inline; float: right">
+		</audio>
+	</div>
+</template>
+
+<div id="container">
+</div>
+
+<script>
+    var pp1, pp2;
+
+    $(document).ready(function(){
+    	if($('#theme option:selected')[0].value == "light"){
+            $("body").css("background-color", "yellow");
+        } else if($('#theme option:selected')[0].value == 'dark') {
+            $("body").css("background-color", "black");
+            $("header").css("color", "white");
+        }
+
+        // $("#but2").on( "click", function(){
+            if($("#playlist option:selected")[0].value == "playlist1"){
+                var p1 = $.getJSON( "Playlist_1.json", function() {
+                    pp1 = JSON.parse(p1.responseText);
+                    $('input[name=content]').on("click",function(){
+                        if($('input[name=content]:checked').val() == "rich"){
+                            document.getElementById("container").innerHTML="";
+                            document.getElementById("container").style.display = "inline-flex";
+                            for(var i = 0; i < pp1["img"].length; i++){
+                                $("#container").append(
+                                	"<div id='block' style='background:url(" + pp1["img"][i] + ")' ><img id = 'plyps' class = 'ply"+ i +"' src = '../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png' onclick='playIt(this.className)'><audio id = '" + "audio" + i +"' src='" + pp1["sound"][i] + "' controls></audio></div>");
+                            }
+                        } else if($('input[name=content]:checked').val() == "compact") {
+                            document.getElementById("container").innerHTML="";
+                            document.getElementById("container").style.display = "block";
+                            for(var i = 0; i < pp1["img"].length; i++){
+                                $("#container").append("<div style='display: block; margin: 50px'><p id='title" + i + "' style='display: inline;'>title" + i + "</p><audio src='" + pp1["sound"][i] + "' controls style='display: inline; float: right;' ></audio></div>");
+                            }
+                        }
+                    });
+                })
+            } else if ($("#playlist option:selected")[0].value == "playlist2"){
+                var p2 = $.getJSON( "Playlist_2.json", function() {
+                    pp2 = JSON.parse(p2.responseText);
+                    $('input[name=content]').on("click", function() {
+                        if($('input[name=content]:checked').val() == "rich") {
+                            document.getElementById("container").innerHTML="";
+                            document.getElementById("container").style.display = "inline-flex";
+                            for(var i = 0; i < pp2["img"].length; i++){
+                                $("#container").append(
+                                	"<div id='block' style=background:url(" + pp2["img"][i] + ");'><img id = 'plyps" + i +"' class = '"+ i +"' src = '../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png' onclick='playIt(this.className)'><audio id = '" + "audio" + i +"' src='" + pp2["sound"][i] + "' controls></audio></div>");
+                            }
+                        } else if($('input[name=content]:checked').val() == "compact") {
+                            document.getElementById("container").innerHTML = "";
+                            document.getElementById("container").style.display = "block";
+                            for(var i = 0; i < pp2["img"].length; i++){
+                                $("#container").append("<div style='display: block; margin: 50px'><p id='title" + i + "' style='display: inline;'>title" + i + "</p><audio src='" + pp2["sound"][i] + "' controls style='display: inline; float: right;' ></audio></div>");
+                            }
+                        }
+                    });
+                })
+            }
+        });
+    // });
+
+    function playIt(id) {
+        var snd = document.getElementById('audio' + id)
+        var pics = document.getElementById('plyps' + id);
+        if (snd.paused) {
+             snd.play();
+             console.log(pics.src);
+             pics.src = "../style/ic_pause_circle_outline_black_24dp/web/ic_pause_circle_outline_black_24dp_2x.png";
+        } else if(snd.play) {
+             snd.pause();
+             console.log(pics.src);
+             pics.src = "../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png";
+         }
+    }
+</script>
+
+<noscript>
+	<b> Your browser does not support JavaScript! </b>
+</noscript>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSE134B</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Oswald&effect=anaglyph' rel='stylesheet'>
+    <link rel="stylesheet" href="Group-Website/style/style.css">
+  </head>
+  <body>
+	<div class="top font-effect-anaglyph">
+		<h1>Audio Tech Board</h1>
+		<h3>The spices to sound</h3>
+	</div>
+	<div class="left">
+		 <div class="dropdown">
+			  <button id="but-proj1" onclick="myFunction()" class="btn btn-primary" type="button">Project 1</button>
+			  <div id="myDropdown1" class="dropdown-content">
+			    <a href="pages/soundboard-part1a.html">SoundBoard 1a</a>
+			    <a href="pages/soundboard-part1b.html">SoundBoard 1b</a>
+			    <a href="pages/tagtest.html">Tagtest</a>
+			  </div>
+		</div>
+		<div class="dropdown">
+			  <button id="but-proj2" onclick="myFunction2()" class="btn btn-primary" type="button">Project 2</button>
+			  <div id="myDropdown2" class="dropdown-content">
+			    <a href="pages/soundboard-part1b.html">Soundboard - Vanilla CSS</a>
+			    <a href="pages/soundboard-part1b-with-Bootstrap.html">SoundBoard - Bootstrap</a>
+			  </div>
+		</div>
+		<div class="dropdown">
+			<button id="but-proj3" onclick ="myFunction3()" type="button" class="btn btn-primary"> Project 3 </button>
+			<div id="myDropdown3" class="dropdown-content">
+				<a href = "pages/newhtml.html"> SoundBoard</a>
+				<a href = "pages/newhtml_jq.html"> SoundBoard JQuery</a>
+				<a href = "readme.md"> README </a>
+			</div>
+		</div>
+
+		<div class = "dropdown">
+			<button id="but-proj4" onclick = "myFunction4()" type="button" class="btn btn-primary"> Project 4</button>
+			<div id = "myDropdown4" class = "dropdown-content">
+				<a href = "pages/newhtml.html"> SoundBoard</a>
+				<a href = "FinalReport/AudioTechBoardSummary.md"> Final Report</a>
+			</div>
+
+		</div>
+
+	</div>
+	<div class="main">
+		<a href="https://www.battleforthenet.com/">
+			<img id="ourimg" src="Group-Website/images/net-neutrality.jpg" alt="Net Neutrality image">
+		</a>
+		<p>We would love to post funny picture, but we want to take the time to remind you of Net Neutraility. We all love the open Internet. Join the movement to save the open Internet!</p>
+		<br>
+	</div>
+	<div class="right">
+		<img class="imgmember" src="Group-Website/images/sunny.jpg" alt="Image of Sunny Solanki">
+		<dl class="desc">
+		<dt style = "color: green;">Sunny Solanski</dt>
+		<dd style = "color: green">ssolanki@ucsd.edu</dd>
+		</dl>
+		<img class="imgmember" src="Group-Website/images/yoey.jpg" alt="Image of Yosua Oey">
+		<dl class="desc">
+		<dt style = "color: green">Yosua Oey</dt>
+		<dd style = "color: green">yoey@ucsd.edu</dd>
+		</dl>
+	</div>
+
+	<script>
+		function myFunction() {
+		    document.getElementById("myDropdown1").classList.toggle("show");
+		}
+
+		function myFunction2() {
+		    document.getElementById("myDropdown2").classList.toggle("show");
+		}
+
+        function myFunction3() {
+            document.getElementById("myDropdown3").classList.toggle("show");
+        }
+
+        function myFunction4() {
+            document.getElementById("myDropdown4").classList.toggle("show");
+        }
+		window.onclick = function(event) {
+		  if (!event.target.matches('.btn-primary')) {
+
+		    var dropdowns = document.getElementsByClassName("dropdown-content");
+		    var i;
+		    for (i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
+		} 
+	</script>
+  </body>
+</html>

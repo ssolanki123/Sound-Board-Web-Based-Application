@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tagtest -- HTML tutorial</title>
+  </head>
+  <body>
+  <!--
+  	Errors:
+  	1.  The date input type is not supported in all browsers.
+  	    Explanation: Although date is supported by HTML5, it is not supported by all browsers.
+  	2. Bad value (min-width: 625x) 625px, (min-width:375px) 375px for attribute sizes on elemstrArrImg img: Bad media condition:
+  	   Explanation: Can only be defined with pixels.
+  -->
+  	<main>
+  		<header>
+  			<h1>Welcome to Our HTML Tutorial</h1>
+  		</header>
+
+	  	<p>In this section we will be exploring snippets of HTML tags, and explain what they do.</p>
+
+	  	<h2>Glossary</h2>
+	  	<nav>
+	  		<ul>
+	  			<li><a href="#script">Script &amp; Noscript</a></li>
+	  			<li><a href="#obj">Object &amp; Param</a></li>
+	  			<li><a href="#style">OStyle &amp; Link </a></li>
+	  			<li><a href="#form">Form, Fieldset, &amp; Input</a></li>
+	  			<li><a href="#select">Select, Opt, &amp; Optgroup</a></li>
+	  			<li><a href="#textarea">Textarea</a></li>
+	  			<li><a href="#a">Anchor</a></li>
+	  			<li><a href="#insdel">Ins &amp; Del</a></li>
+	  			<li><a href="#list">List</a></li>
+	  			<li><a href="#iframe">iframe</a></li>
+	  			<li><a href="#image">Image</a></li>
+	  		</ul>
+	  	</nav>
+	  	<br>
+
+	  	<section id="script">
+	  	<h2>Script &amp; Noscript</h2>
+	  	<p>We rarely see a static website nowadays thanks to the rapid growth of Javascript. Javascript makes a website more interactive. We can have Javascript embedded into our HTML page by using the built-in &lt;script&gt; tag. For example</p>
+	  	<p id="msg">Click to change the message</p>
+	  	<button onclick="clicky()">Click Me!</button>
+	  	<br>
+	  	<p>The message changed because of Javascript. To do this, we have to insert a Javascript code at the bottom of the document.</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;script&gt; <br>
+	  		&nbsp;&nbsp;&nbsp;function clicky(){ <br>
+	  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.getElementById("msg").innerHTML = "Hello from Javascript!"; <br>
+	  		&nbsp;&nbsp;&nbsp;}; <br>
+	  	&nbsp;&nbsp;&nbsp;&lt;&#47;script&gt; </p>
+
+	  	<p>Some old websites may not be able to run Javascript. To let the user know that Javascript is needed in their browser, we use &lt;noscript&gt; tag.</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;noscript&gt;Javascript is turned off!&lt;&#47;noscript&gt;</p>
+	  	<br>
+	  	</section>
+
+	  	<section id="obj">
+	  	<h2>Object &amp; Param</h2>
+	  	<p>Object is a HTML tag that is used to embed object such as image, video, Java Applet, etc. An example would be</p>
+	  	<object data="../lecture1-2017-official-1up.pdf" type="application/pdf">
+	  		<param name="foo" value="bar">
+	  	</object>
+	  	<p>You can embed object by using the semantic below:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;object data=pdf_name&gt;&lt;&#47;object&gt;</p>
+	  	<p>In addition, you can add parameters onto the object by typing:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;param&gt;&lt;&#47;param&gt;</p>
+	  	Between the object tag.
+	  	</section>
+	  	<br>
+
+	  	<section id="style">
+	  	<h2>Style &amp; Link </h2>
+	  	<p>To have a pure HTML page is quite boring. This is where style tag comes to the picture. Style tag lets you decorate your site, typically by changing the font, background, font-color etc. For example:</p>
+	  	<p style="color: Red; text-align: center;">Wouldn't it be fantastic to have some <span style="color: Green; font-style: italic;">style</span> in your page?</p>
+	  	<p>There are 2 methods to have the text in your page be formatted that way. Firstly, there's an inline method of including stylesheet into HTML.</p>
+	  	<p>&lt;p style=&#34;color&#34; a color&#58;&gt;Hello, this text will be colored Red.&lt;&#47;p&gt;</p>
+	  	Another method is to have a separate CSS file Linked to the html page via a link.
+	  	<p>&lt;link rel="stylesheet" type="text/css" href="file.css"&gt;</p>
+	  	</section>
+	  	<br>
+
+	  	<section id="form">
+	  	<h2>Form, Fieldset, &amp; Input</h2>
+	  	<p>If you want your website to prompt a field for the visitors to input certain fields and send them back to the server, you can use the combination of form, fieldset, and input tags.</p>
+	  	<form>
+	  		<fieldset>
+	  			First Name:<br>
+	  			<input type="text">
+	  			<br>
+	  			Last Name:<br>
+	  			<input type="text">
+	  			<br>
+	  			Password:<br>
+	  			<input type="password">
+	  			<br>
+	  			Gender:<br>
+	  			<input type="radio" checked> Male<br>
+				<input type="radio"> Female<br>
+			    <input type="radio"> Other
+			    <br>
+			    Reasons of visitation:<br>
+			    <input type="checkbox">I need to change my tire<br>
+			    <input type="checkbox">I need an oil change<br>
+			    <br>
+			    Car Year:<br>
+			    <input type="number" min="1800" max="2017"><br>
+			    Date of visitation:<br>
+			    <input type="date"><br>
+			    <br>
+			    <button onclick="submit_car()">Submit!</button>
+	  		</fieldset>
+	  	</form>
+	  	<p>As you can see, there are various inputs that you can put into the HTML page, this includes:</p>
+	  	<ul>
+	  		<li>Text</li>
+	  		<li>Password</li>
+	  		<li>Radio</li>
+	  		<li>Checkbox</li>
+	  		<li>Number</li>
+	  		<li>Date</li>
+	  	</ul>
+	  	<p>Thus to make such form and its constituents, we use the following semantic:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;form&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fieldset&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some Text: &lt;input type="some_type"&gt;<br>&nbsp;&nbsp;&nbsp;&lt;&#47;fieldset&gt;<br>&nbsp;&nbsp;&nbsp;&lt;&#47;form&gt;<br>&nbsp;&nbsp;&nbsp;&lt;button&gt;Submit&lt;&#47;button&gt;</p>
+	  	</section>
+	  	<br>
+
+	  	<section id="select">
+	  	<h2>Select, Opt, &amp; Optgroup</h2>
+	  	<p>There are times when you want the user to select a specific option. This can be achieved through the use of a drop-down list. To create a drop-down list, HTML provides a select tag along with the accompanying opt and optgroup tag to provide the available option to the end user. For example:</p>
+	  	<p>Please select which pizza variation you would like to order:</p>
+		<select>
+		  <optgroup label="Vegetarian">
+			  <option>Veggie Delight</option>
+			  <option>Vegan Deluxe</option>
+		  <optgroup label="Others">
+			  <option>Pepperoni Party</option>
+			  <option>Four Cheese Fiesta</option>
+		</select>
+		<br>
+		<p>To use the Select, Opt, and Optgroup tag in the HTML, type in</p>
+		<p>
+		&nbsp;&nbsp;&nbsp;&lt;select&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;optgroup label="some_label"&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;opt&gt;some option&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&#47;optgroup&gt;<br>
+		&nbsp;&nbsp;&nbsp;&lt;&#47;select&gt;<br>
+		</p>
+	  	</section>
+	  	<br>
+
+	  	<section id="textarea">
+	  	<h2>Textarea</h2>
+	  	<p>Say you want to have a feature that allows user to put their feedback in your site. To have this feature, we need to have to use textarea text.</p>
+	  	<textarea rows="4" cols="50"></textarea>
+	  	<br>
+	  	<p>The semantic for textarea is:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;textarea&gt;&lt;&#47;textarea&gt;<br>
+	  	</section>
+	  	<br>
+
+	  	<section id="a">
+	  	<h2>Anchor</h2>
+	  	<p>Anchor element in HTML lets you create hyperlink in a HTML object.</p>
+	  	<a href="http://classes.pint.com/"><img src="pngimg.png"
+	  	srcset="../img/pngimg.png 300w, ../img/pngimg_smoll.jpg 128w"
+	  	sizes="(min-width:512px) 300px, (min-width:256px) 128px"
+	  	alt="Logo of HTML, CSS, and JS"></a><br>
+	  	<p>To achieve this result, use the semantics of anchor element as per following:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;a href="some_link"&gt;insert text or image here&lt;&#47;a&gt;
+	  	</section>
+	  	<br>
+
+	  	<section id="insdel">
+	  	<h2>Ins &amp; Del</h2>
+	  	<p>Sometimes you want to emphasize a part of a text that's been inserted/deleted into/from a page. We can do this via the ins and del HTML tag. An example of the use of ins and del tag is shown below:</p>
+	  	<p>I would like to inform you that some of the word has been <ins>inserted</ins> <del>deleted</del></p>
+	  	<p>The semantic for these two are pretty straightforward.</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;ins&gt;The inserted text&lt;&#47;ins&gt;<br>OR<br>&nbsp;&nbsp;&nbsp;&lt;del&gt;The deleted text&lt;&#47;del&gt;
+	  	</section>
+	  	<br>
+
+	  	<section id="list">
+	  	<h2>List</h2>
+	  	<p>To list items in HTML, we use the tag ul for unordered list and ol for ordered list. In addition, every item must be enclosed within the li tag.</p><br>
+	  	This is an unordered list:
+	  	<ul>
+	  		<li>First item</li>
+	  		<li>Second item</li>
+	  	</ul>
+	  	<br>
+	  	This is an ordered list:
+	  	<ol>
+	  		<li>First item</li>
+	  		<li>Second item</li>
+	  	</ol>
+	  	<p>The semantic for both is shown below:</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;ul or ol&gt;<br>
+	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;item 1 &lt;&#47;li&gt;<br>
+	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;item 2 &lt;&#47;li&gt;<br>
+	  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;etc<br>
+	  	&nbsp;&nbsp;&nbsp;&lt;&#47;ul or ol&gt;</p>
+	  	<p>There is also a description list to put item's description. The description list has the same feel to regular list. There are tags that accompany one another which are dl, dt, and dd.</p>
+	  	<dl>
+		  <dt>Internet</dt>
+		  <dd>
+		    The most awesome invention.
+		  </dd>
+		  <dt>Memes</dt>
+		  <dd>
+		  	The culture of the most awesome invention.
+		  </dd>
+		</dl>
+	  	<p>The semantics for these desriptions lists are</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;dl&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dt&gt;Item to describe&lt;&#47;dt&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dd&gt;Description&lt;&#47;&gt;<br>&nbsp;&nbsp;&nbsp;&lt;dl&gt;<br>
+	  	</section>
+	  	<br>
+
+	  	<section id="iframe">
+	  	<h2>iframe</h2>
+	  	<p>The iframe tag is used to embed an independent HTML document into the current document.</p>
+	  	<br>
+	  	<iframe src="http://classes.pint.com/"></iframe>
+	  	<p>The semantic for iframe is as follows</p>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;iframe src="Other HTML document goes here"&gt;&lt;&#47;iframe&gt;</p>
+	  	</section>
+	  	<br>
+
+	  	<section id="image">
+	  	<h2>Image and its respective format</h2>
+	  	<p>Lastly, you can embed images of any type into your html document by using img HTML tag.</p>
+	  	<br>
+	  	<p>WebP image</p><br>
+	  	<img src="../img/image.webp"
+	  	srcset="../img/image.webp 500w, ../img/image_smoll.webp 250w"
+	  	sizes="(min-width:512px) 500px, (min-width:256px) 250px"
+	  	alt="Triton logo from UCSD"><br>
+	  	<p>JPG image</p><br>
+	  	<img src="../img/image.jpg"
+	  	srcset="../img/image.jpg 500w, ../img/image_smoll.jpg 250w"
+	  	sizes="(min-width: 500px) 500px, (min-width: 250px) 250px"
+	  	alt="Triton logo from UCSD"><br>
+	  	<p>GIF image<p><br>
+	  	<img src="../img/umbrella.gif"
+	  	srcset="../img/umbrella.gif 320w, ../img/umbrella_smoll.gif 128w"
+	  	sizes="(min-width:512px) 320px, (min-width:256px) 256px"
+	  	alt="Man fighting an umbrella"><br>
+	  	<p>SVG image<p><br>
+	  	<img src="../img/corgi.svg"
+	  	srcset="../img/corgi_smoll.svg 625w, ../img/corgi.svg 375w"
+	  	sizes="(min-width: 625x) 625px, (min-width:375px) 375px"
+	  	alt="Black and white picture of a corgi"><br>
+	  	<p>To do this, simply use the img tag as per following:</p>
+	  	<br>
+	  	<p>&nbsp;&nbsp;&nbsp;&lt;img srcset="name of image"&gt;
+	  	</section>
+  	</main>
+
+  	<script>
+  		function clicky(){
+  			document.getElementById("msg").innerHTML = "Hello from Javascript!";
+  		};
+  		function submit_car(){
+  			alert("Thank you for submitting!");
+  		};
+  	</script>
+  	<noscript>Browser needs JS!</noscript>
+  	<br>
+  	<footer>&copy; UCSD 2017</footer>
+  </body>
+</html>

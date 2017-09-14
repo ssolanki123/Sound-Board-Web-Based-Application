@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSE 134B</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Oswald&effect=anaglyph' rel='stylesheet'>
+    <link rel="stylesheet" href="Group-Website/style/style.css">
+  </head>
+  <body>
+	<div class="top font-effect-anaglyph">
+		<h1>Audio Tech Board</h1>
+		<h3>The spices to sound</h3>
+	</div>
+	<div class="left">
+		 <div class="dropdown">
+			  <button id="but-proj1" onclick="myFunction()" class="btn btn-primary" type="button">Project 1</button>
+			  <div id="myDropdown1" class="dropdown-content">
+			    <a href="soundboard-part1a.html">SoundBoard 1a</a>
+			    <a href="soundboard-part1b.html">SoundBoard 1b</a>
+			    <a href="tagtest.html">Tagtest</a>
+			  </div>
+		</div>
+
+		<div class="dropdown">
+			<button id="but-proj2" onclick="myFunction2()" class="btn btn-primary" type="button">Project 2</button>
+			<div id="myDropdown2" class="dropdown-content">
+				<a href="pages/soundboard-part1b.html">Soundboard - Vanilla CSS</a>
+				<a href="pages/soundboard-part1b-with-Bootstrap.html">SoundBoard - Bootstrap</a>
+			</div>
+		</div>
+
+		<button id="but-proj3" type="button" class="btn btn-danger">Coming Soon!</button>
+		<br>
+		<button id="but-proj4" type="button" class="btn btn-warning">Coming Soon!</button>
+	</div>
+	<div class="main">
+		<a href="https://www.battleforthenet.com/">
+			<img id="ourimg" src="Group-Website/images/net-neutrality.jpg" alt="Net Neutrality image">
+		</a>
+		<p>We would love to post funny picture, but we want to take the time to remind you of Net Neutraility. We aall love the open Internet. Join the movement to save the open Internet!</p>
+		<br>
+	</div>
+	<div class="right">
+		<img class="imgmember" src="Group-Website/images/sunny.jpg" alt="Image of Sunny Solanski">
+		<dl class="desc">
+		<dt>Sunny Solanski</dt>
+		<dd>ssolanki@ucsd.edu</dd>
+		</dl>
+		<img class="imgmember" src="Group-Website/images/yoey.jpg" alt="Image of Yosua Oey">
+		<dl class="desc">
+		<dt>Yosua Oey</dt>
+		<dd>yoey@ucsd.edu</dd>
+		</dl>
+	</div>
+
+	<script>
+		function myFunction() {
+		    document.getElementById("myDropdown1").classList.toggle("show");
+		}
+
+        function myFunction2() {
+            document.getElementById("myDropdown2").classList.toggle("show");
+        }
+
+		window.onclick = function(event) {
+		  if (!event.target.matches('.btn-primary')) {
+
+		    var dropdowns = document.getElementsByClassName("dropdown-content");
+		    var i;
+		    for (i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
+		} 
+	</script>
+  </body>
+</html>

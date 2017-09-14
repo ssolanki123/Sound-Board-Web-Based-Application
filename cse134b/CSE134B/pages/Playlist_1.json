@@ -1,0 +1,23 @@
+{
+  "strArrImg": ["../img/Simpsons/Bart.png", "../img/Simpsons/Bartman.jpg",
+  	"../img/Simpsons/BeerHomer.ico", "../img/Simpsons/Homer.ico",
+  	"../img/Simpsons/Homer2.ico", "../img/Simpsons/HomerDonut.jpg",
+  	"../img/Simpsons/Lisa.png", "../img/Simpsons/Maggie.png",
+  	"../img/Simpsons/Maggie2.ico", "../img/Simpsons/Marge.ico",
+  	"../img/Simpsons/Millhouse.png", "../img/Simpsons/Simpson.jpeg"
+  ],
+
+  "strArrSound": ["../sound/Simpsons/And%20the%20lesson%20is.mp3","../sound/Simpsons/Between%20breakfast%20and%20lunch.mp3",
+    "../sound/Simpsons/GREAT%20DISHONOR.mp3","../sound/Simpsons/Homer%20plays%20blackjack.mp3",
+    "../sound/Simpsons/I%20didnt%20do%20it.mp3", "../sound/Simpsons/I%20do%20not%20speak%20English.mp3",
+    "../sound/Simpsons/I%20was%20wrestling%20wolves.mp3", "../sound/Simpsons/If%20its%20brown%20drink%20it%20down.mp3",
+    "../sound/Simpsons/Kick%20your%20butt.mp3", "../sound/Simpsons/Krusty%20Hey%20kids.mp3",
+    "../sound/Simpsons/The%20Metric%20System.mp3", "../sound/Simpsons/raccoon.mp3"
+  ],
+
+  "strSoundTitle": [
+  	"And the Lesson is", "Between Breakfast and Brunch", "Great Dishonor", "Blackjack", "I Didn't Do it",
+    "I Do Not Speak English", "Wrestling Wolves", "If It's Brown..", "Kick Your Butt", "Krusty Hey Kids",
+    "The Metric System", "Raccoon"
+  ]
+}

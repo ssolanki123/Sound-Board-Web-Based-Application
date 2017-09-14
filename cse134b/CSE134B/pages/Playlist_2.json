@@ -1,0 +1,26 @@
+{
+
+  "strArrImg": ["../img/Futurama/Bender.jpg", "../img/Futurama/Fry.ico",
+    "../img/Futurama/Leo%20Wong.ico", "../img/Futurama/Roberto.ico",
+    "../img/Futurama/Robot_Devil.png", "../img/Futurama/Scruffy.png",
+    "../img/Futurama/Yivo.ico", "../img/Futurama/alien.jpg",
+    "../img/Futurama/gunther.ico", "../img/Futurama/kiff.ico",
+    "../img/Futurama/leela.png", "../img/Futurama/robot.jpg"
+  ],
+
+  "strArrSound": [
+  	"../sound/Futurama/Bring%20it%20on.mp3", "../sound/Futurama/Cold%20mechanical%20heart.mp3",
+  	"../sound/Futurama/Crippling%20pain.mp3", "../sound/Futurama/Everybodys%20a%20jerk.mp3",
+    "../sound/Futurama/Gonna%20be%20fun.mp3", "../sound/Futurama/Im%20tired.mp3",
+    "../sound/Futurama/Kill%20me%20already.mp3", "../sound/Futurama/Nerds.mp3",
+    "../sound/Futurama/Roadtrip%20to%20Tijuana.mp3", "../sound/Futurama/Shiny%20metal%20ass.mp3",
+    "../sound/Futurama/So%20excited.mp3", "../sound/Futurama/Sober%20and%20crazy.mp3"
+	],
+
+  "strSoundTitle" : [
+    "Bring It On", "Cold Mechanical Heart", "Crippling Pain", "Everybody's a Jerk",
+    "Gonna Be Fun", "I'm Tired", "Kill Me Already", "Nerds", "Roadtrip to Tijuana", "Shiny Metal Ass",
+    "So Excited", "Sober and Crazy"
+  ]
+  
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta name="theme-color" content="#317EFB">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Soundboard</title>
+	<!-- BEGIN TRACKJS -->
+	 <script type="text/javascript">
+		window._trackJs = { token: 'a3b62a3232d44826a2d8751981d9e1b0' };
+	</script>
+	<script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+	 <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"> 
+	 <link rel="manifest" href="manifest.json">
+	<!-- END TRACKJS -->
+    <style>
+    	header > h1 {
+    		font-family: 'Oswald';
+    		text-align: center;
+    		background-color: white;
+    		animation-duration: 3s;
+			animation-name: slidein;
+       	}
+
+       	header > img {
+       		width: 32px;
+       		height: 32px;
+       		float: left;
+       		margin: 8px;
+       		animation-duration: 4s;
+       		animation-name: fadein;
+       	}
+
+       	@keyframes slidein {
+		  from {
+		    margin-left: 100%;
+		    width: 300%; 
+		  }
+
+		  to {
+		    margin-left: 0%;
+		    width: 100%;
+		  }
+		}
+
+		#ssi {
+			display: inline-flex;
+			margin: 50px;
+			width: 256px;
+			height: 256px;
+			border-style: solid;
+			border-color: transparent;
+			border-radius: 300px;
+			box-shadow: 25px 16px 1em grey;
+			animation-duration: 3s;
+			animation-name: fadein;
+		}
+
+		#ssic {
+			animation-duration: 3s;
+			animation-name: fadein;
+		}
+
+		@keyframes fadein {
+			from { opacity: 0; }
+    		to   { opacity: 1; }
+		}
+
+		p {
+			font-family: 'Oswald';
+		}
+
+		#ssi > img {
+			margin: auto;
+			width: 64px;
+			height: 64px;
+		}
+
+    	audio {
+    		display: none;
+    	}
+
+    	form#ldmode {
+    		float: right;
+    	}
+
+    	form#crform {
+    		float: left;
+    		font-family: 'Oswald';
+    	}
+
+    	form#plylist{
+    		text-align: center;
+    		margin-bottom: 50px;
+    	}
+    </style>
+</head>
+<body>
+	<header>
+		<img alt = "home icon" src="../img/home-512.gif" onclick="ATB.relpage()">
+		<h1> Audio Techboard </h1>
+	</header>
+
+	<form id="ldmode" action="newhtml.html" method="GET">
+		<select id="theme">
+			<option class="light" value="light"> Daymode</option>
+			<option class="dark" value="dark"> Nightmode</option>
+			<input type="button" value="submit" onclick="ATB.changeTheme()">
+		</select>
+	</form>
+
+	<form id="crform" action = "newhtml.html" method = "GET">
+		<input type = "radio" name = "content" id = "compact" onclick = "ATB.changeLayout()"> Compact <br>
+		<input type = "radio" name = "content" id = "rich" onclick="ATB.changeLayout()" checked="checked"> Rich <br>
+	</form>
+
+	<form id="plylist" action="newhtml.html" method="GET">
+		<select id="playlist">
+			<option value="playlist1">The Simpsons</option>
+			<option value="playlist2">Futurama</option>
+			<input type="button" value="submit" onclick="ATB.displayPlayList()">
+		</select>
+	</form>
+
+	<template id="sound_and_img">
+		<div id="ssi" class="soundBtn" style="">
+	        <img alt = "picture" onclick="ATB.playIt(this.id)" onended="ATB.revertIcon(this.id)">
+	        <audio src="" controls>
+				Browser does not support the audio element.
+			</audio>
+	    </div>
+	</template>
+
+	<template id="sound_and_img_c">
+		<div id="ssic" style="margin: 50px;">
+			<p id="songtitle-artist" style="vertical-align: middle; display: inline"></p>
+			<audio src="" controls style="display: inline; float: right">
+			</audio>
+		</div>
+	</template>
+
+	<div id="container">
+	</div>
+
+	<script type="text/javascript">
+		/*
+		 * Registers Service Worker for cache control
+		 */
+		if ('serviceWorker' in navigator) {
+		  window.addEventListener('load', function() {
+		    navigator.serviceWorker.register('./sw.js', {scope: './'})
+		    .then(function(registration) {
+		      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		    }, function(err) {
+		      console.log('ServiceWorker registration failed: ', err);
+		    });
+		  });
+		}
+
+		//JavaScript Object to store global variables
+		var ATB = {};
+		ATB.bLight = true;
+		ATB.bDark = false;
+        ATB.strArrPlaylist = null;
+		ATB.strArrImg = [];
+		ATB.strArrSound = [];
+		ATB.strTitle = [];
+
+		/*
+		 * Populates image and audio arrays based on the corresponding strArrPlaylist. Calls populatePage()
+		 * to display images and audio.
+		 */
+		ATB.displayPlayList = function() {
+            ATB.strArrImg = [];
+			ATB.strArrSound = [];
+		    if(document.getElementById("playlist").value == "playlist1") {
+                try {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function () {
+                        if ((typeof this.readyState === "number") &&
+							(typeof this.status === "number") &&
+						    (this.readyState === 4 && this.status === 200)) {
+                            var myObj = JSON.parse(this.responseText);
+                            ATB.createPlayList(myObj);
+                        }
+                    };
+                    xmlhttp.open("GET", "../pages/Playlist_1.json", true);
+                    xmlhttp.send(null);
+                } catch (e) {
+                    document.write("SoundBoard cannot be loaded at this time. Please refresh page to try again");
+                } if (ATB.strArrPlaylist != null) {
+                    for (var k = 0; k < ATB.strArrPlaylist.strArrImg.length; k++) {
+                        ATB.strArrImg.push(ATB.strArrPlaylist.strArrImg[k]);
+                        ATB.strArrSound.push(ATB.strArrPlaylist.strArrSound[k]);
+                        ATB.strTitle.push(ATB.strArrPlaylist.strSoundTitle[k]);
+                    }
+                }
+            } else if(document.getElementById("playlist").value == "playlist2") {
+		        ATB.strArrImg = null;
+		        ATB.strArrSound = null;
+		        ATB.strArrImg = [];
+				ATB.strArrSound = [];
+				try {
+                    var xmlhttp2 = new XMLHttpRequest();
+                    xmlhttp2.onreadystatechange = function () {
+                        if ((typeof this.readyState === "number") &&
+                            (typeof this.status === "number") &&
+							(this.readyState === 4 && this.status === 200)) {
+                            var myObj = JSON.parse(this.responseText);
+                            ATB.createPlayList(myObj);
+                        }
+                    };
+                    xmlhttp2.open("GET", "Playlist_2.json", true);
+                    xmlhttp2.send(null);
+                } catch(e) {
+                    document.write("SoundBoard cannot be loaded at this time. Please refresh page to try again");
+				}
+                if(ATB.strArrPlaylist != null) {
+                   for (var a = 0; a < ATB.strArrPlaylist.strArrImg.length; a++) {
+                        ATB.strArrImg.push(ATB.strArrPlaylist.strArrImg[a]);
+                        ATB.strArrSound.push(ATB.strArrPlaylist.strArrSound[a]);
+                        ATB.strTitle.push(ATB.strArrPlaylist.strSoundTitle[a]);
+                   }
+                }
+			}
+			ATB.populatePage();
+		 };
+
+		/*
+		 * param: data -- contains JSON object containing relative pathways for audio and images
+		 * Assigns JSON object "data" to strArrPlaylist
+		 */
+        ATB.createPlayList = function(data){
+            ATB.strArrPlaylist = null;
+            ATB.strArrPlaylist = data;
+        };
+
+		/*
+		 * Populates the rich page using the respective pathway's stored in strArrImg and strArrSound arrays.
+		 */
+		ATB.populatePage = function() {
+		    document.querySelector('#container').innerHTML = "";
+            var t = document.querySelector('#sound_and_img');
+            for (var i = 0; i < ATB.strArrImg.length; i++) {
+                //t.content.querySelector('div').id = "ssi" + i;
+                t.content.querySelector('div').style = 'background: url(' + ATB.strArrImg[i] +')';
+                t.content.querySelector('audio').src = ATB.strArrSound[i];
+				t.content.querySelector('img').src = "../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png";
+                t.content.querySelector('img').id = i;
+                t.content.querySelector('audio').id = 'audio' + i;
+                document.querySelector('#container').appendChild(
+                    document.importNode(t.content, true));
+            }
+        };
+
+        /*
+         * Populates the compact page with respective artist's names and audio
+         */
+        ATB.populateCompactPage = function() {
+		    document.querySelector('#container').innerHTML = "";
+            var t = document.querySelector('#sound_and_img_c');
+            for (var i = 0; i < ATB.strArrImg.length; i++) {
+            	t.content.getElementById('songtitle-artist').innerHTML = ATB.strTitle[i];
+                t.content.querySelector('audio').src = ATB.strArrSound[i];
+                document.querySelector('#container').appendChild(
+                    document.importNode(t.content, true));
+            }
+        };
+
+        /*
+         * param: id - Corresponds to respective audio that user clicked on
+         * Plays or pauses audio based on user's click on audio source
+         */
+        ATB.playIt = function(id) {
+        	var sound = document.getElementById('audio' + id);
+        	if(sound.paused) {
+        		sound.play();
+                    document.getElementById(id).src = '../style/ic_pause_circle_outline_black_24dp/web/ic_pause_circle_outline_black_24dp_2x.png';
+        	} else if(sound.play) {
+        		sound.pause();
+                    document.getElementById(id).src = '../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png'
+        	}
+        	if(sound.ended) {
+        		document.getElementById(id).src = '../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png'
+        	}
+        };
+
+
+        /*
+         * Changes theme background color and audio buttons based on theme selected (Daymode or Lightmode)
+         */
+        ATB.changeTheme = function() {
+		    if(document.getElementById('theme').value == 'light') {
+		        ATB.light = true;
+		        ATB.dark = false;
+		    	document.querySelector('body').style = 'background-color: orange';
+		    	document.getElementById('crform').style = 'color: black';
+		    	document.querySelector('p').style = 'color: black';
+			} else if((typeof document.getElementById('theme').value === 'string') && (document.getElementById('theme').value === 'dark')) {
+		        ATB.bLight = false;
+		        ATB.bDark = true;
+                document.querySelector('body').style = 'background-color: rgba(0, 0, 20, .95);';
+                document.getElementById('crform').style = 'color: white';
+                document.querySelector('p').style = 'color: white';
+			}
+		};
+
+		/*
+		 * Changes layout based on whether compact or rich mode was selected
+		 */
+		ATB.changeLayout = function() {
+			if((typeof document.getElementById("compact").checked === 'boolean') && (document.getElementById("compact").checked === true)) {
+		        document.querySelector('#container').innerHTML = "";
+		        ATB.populateCompactPage();
+			}
+
+			else if((typeof document.getElementById("compact").checked === 'boolean') && (document.getElementById("rich").checked == true)) {
+		        ATB.populatePage();
+		        ATB.changeTheme();
+			}
+		};
+
+		ATB.revertIcon = function(pid) {
+			document.getElementById(pid).src = '../style/ic_play_circle_outline_black_24dp/web/ic_play_circle_outline_black_24dp_2x.png'
+		}
+
+		/*
+		 * Function that is used to reload the page.
+		 */
+		ATB.relpage = function(){
+			location.reload();
+		}
+
+        //Display theme and playlist when page loads
+        window.onload = ATB.changeTheme();
+        window.onload = ATB.displayPlayList();
+	</script>
+
+	<noscript>
+		<b> Your browser does not support JavaScript! </b>
+	</noscript>
+</body>
+</html>
